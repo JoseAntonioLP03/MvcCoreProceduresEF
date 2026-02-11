@@ -1,0 +1,53 @@
+﻿@model List<Doctor>
+
+@{
+   List<string> especialidades =  ViewData["ESPECIALIDADES"] as List<string>;
+}
+
+<h1>Especialidades de Doctores</h1>
+
+
+@if (especialidades != null)
+{
+    <form method="post">
+        <label>Especialidad</label>
+        <select class="form-control" name="especialidad">
+            @foreach (string especialidad in especialidades)
+            {
+                <option>@especialidad</option>
+            }
+        </select><br />
+        <label>Incremento: </label>
+        <input type="number" name="incremento" class="form-control" /><br>
+        <button class="btn btn-info" name="metodo" value="sp">Incrementar salario SP</button>
+        <button class="btn btn-info" name="metodo" value="nosp">Incrementar salario SIN SP</button>
+    </form>
+}
+
+@if (Model != null)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>HOSPITAL_COD</th>
+                <th>DOCTOR_NO</th>
+                <th>APELLIDO</th>
+                <th>ESPECIALIDAD</th>
+                <th>SALARIO</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Doctor doctor in Model)
+            {
+                <tr>
+                    <td>@doctor.Hospital_Cod</td>
+                    <td>@doctor.Doctor_No</td>
+                    <td>@doctor.Apellido</td>
+                    <td>@doctor.Especialidad</td>
+                    <td>@doctor.Salario</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
